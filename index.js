@@ -5,8 +5,8 @@ require('dotenv').config();
 
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
-const TARGET_WILAYA_CODE = '41';
-const CHECK_INTERVAL_SECONDS = 10;
+const TARGET_WILAYA_CODE = process.env.TARGET_WILAYA_CODE || '41';
+const CHECK_INTERVAL_SECONDS = parseInt(process.env.CHECK_INTERVAL_SECONDS, 10) || 10;
 
 const TELEGRAM_API_URL = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 

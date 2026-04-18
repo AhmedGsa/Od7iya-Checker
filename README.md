@@ -9,16 +9,25 @@ A Node.js app that monitors Algerian wilaya quotas and notifies you via Telegram
    npm install
    ```
 
-2. Run the checker:
+2. Configure your environment:
+   - Copy `.env.example` to `.env` (or create one)
+   - Add your Telegram bot token and chat ID
+
+3. Run the checker:
    ```bash
    npm start
    ```
 
 ## Configuration
 
-Edit `index.js` to change:
-- `TARGET_WILAYA_CODE` - The wilaya code to monitor (default: 41)
-- `CHECK_INTERVAL_MINUTES` - How often to check (default: 5 minutes)
+Edit `.env` to configure:
+
+| Variable | Description |
+|----------|-------------|
+| `TELEGRAM_BOT_TOKEN` | Your Telegram bot token |
+| `TELEGRAM_CHAT_ID` | Your Telegram chat ID |
+| `TARGET_WILAYA_CODE` | The wilaya code to monitor (default: 41) |
+| `CHECK_INTERVAL_SECONDS` | How often to check (default: 10 seconds) |
 
 ## How it works
 
