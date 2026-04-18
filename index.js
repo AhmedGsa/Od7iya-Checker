@@ -28,7 +28,6 @@ async function checkWilayaAvailability() {
 
     if (targetWilaya.available === true) {
       await sendTelegramNotification(targetWilaya);
-      return true;
     }
 
     return false;
@@ -63,22 +62,11 @@ async function main() {
   console.log(`Check Interval: Every ${CHECK_INTERVAL_SECONDS} seconds`);
   console.log('========================================');
 
-  const isAvailable = await checkWilayaAvailability();
+  await checkWilayaAvailability();
 
-  if (isAvailable) {
-    console.log('Target wilaya is available! Notification sent. Exiting.');
-    process.exit(0);
-  } else {
-    console.log(`Target wilaya is not available. Will check again in ${CHECK_INTERVAL_SECONDS} seconds...`);
-    
-    setInterval(async () => {
-      const available = await checkWilayaAvailability();
-      if (available) {
-        console.log('Target wilaya is available! Notification sent. Exiting.');
-        process.exit(0);
-      }
-    }, CHECK_INTERVAL_SECONDS * 1000);
-  }
+  setInterval(async () => {
+    await checkWilayaAvailability();
+  }, CHECK_INTERVAL_SECONDS * 1000);
 }
 
 main();
